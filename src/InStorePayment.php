@@ -6,6 +6,7 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\HiddenField;
+use SilverStripe\Forms\LiteralField;
 use Sunnysideup\Ecommerce\Model\Money\EcommercePayment;
 use Sunnysideup\Ecommerce\Model\Order;
 use Sunnysideup\Ecommerce\Money\Payment\PaymentResults\EcommercePaymentSuccess;
@@ -34,8 +35,10 @@ class InStorePayment extends EcommercePayment
 
     public function getPaymentFormFields($amount = 0, ?Order $order = null): FieldList
     {
+        $msg = _t(__CLASS__ . 'PAY_IN_STORE', 'Pay in Store');
         return new FieldList(
-            new HiddenField('InStore', 'InStore', 0)
+            HiddenField::create('InStore', 'InStore', 0),
+            LiteralField::create('PayInStore', '<div>' . $msg . '</div>')
         );
     }
 
