@@ -13,7 +13,6 @@ use Sunnysideup\Ecommerce\Money\Payment\PaymentResults\EcommercePaymentSuccess;
 
 /**
  * Payment object representing an In Store Payment (order online and pick-up in store).
- *
  */
 class InStorePayment extends EcommercePayment
 {
