@@ -16,6 +16,8 @@ use Sunnysideup\Ecommerce\Money\Payment\PaymentResults\EcommercePaymentSuccess;
  */
 class InStorePayment extends EcommercePayment
 {
+    private static $table_name = 'InStorePayment';
+
     private static $custom_message_for_in_store_payment = '';
 
     /**
@@ -34,11 +36,8 @@ class InStorePayment extends EcommercePayment
 
     public function getPaymentFormFields($amount = 0, ?Order $order = null): FieldList
     {
-        $msg = _t(__CLASS__ . 'PAY_IN_STORE', 'Pay in Store');
-        return new FieldList(
-            HiddenField::create('InStore', 'InStore', 0),
-            LiteralField::create('PayInStore', '<div>' . $msg . '</div>')
-        );
+        $msg = _t(self::class . 'PAY_IN_STORE', 'Pay in Store');
+        return FieldList::create(HiddenField::create('InStore', 'InStore', 0), LiteralField::create('PayInStore', '<div>' . $msg . '</div>'));
     }
 
     public function getPaymentFormRequirements(): array
